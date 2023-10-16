@@ -28,7 +28,11 @@ app.use(
 
 // Enable CORS for all routes
 const corsOptions = {
-  origin: ["http://localhost:3000", "http://localhost:3001"],
+  origin: [
+    "http://localhost:3000",
+    "http://localhost:3001",
+    "https://susu-sys-frontend.vercel.app",
+  ],
   credentials: true,
   exposedHeaders: ["Authorization"],
 };
