@@ -1,5 +1,6 @@
 const Customer = require("../models/CustomerModel");
 const asyncHandler = require("express-async-handler");
+const Transaction = require("../models/TransactionModel");
 
 // Create a new customer
 const createCustomer = asyncHandler(async (req, res) => {
@@ -103,6 +104,9 @@ const deleteCustomer = asyncHandler(async (req, res) => {
   if (!customer) {
     throw Object.assign(new Error("customer not found"), { status: 404 });
   }
+
+  await Transaction.deleteMany({ customerId: customer._id });
+
   const deletedCustomer = await Customer.findByIdAndRemove(req.params.id);
   if (!deletedCustomer) {
     return res.status(404).json({ message: "Customer not found" });

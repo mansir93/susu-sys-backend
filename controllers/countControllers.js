@@ -29,9 +29,8 @@ exports.getCounts = asyncHandler(async (req, res) => {
     totalAccountBalance += customer.accountBalance;
   }
 
-  const averageAccountBalance = (totalAccountBalance / totalCustomers).toFixed(
-    2
-  );
+  const averageAccountBalance =
+    (totalAccountBalance / totalCustomers).toFixed(2) || 0;
 
   const counts = {
     totalCustomers,
